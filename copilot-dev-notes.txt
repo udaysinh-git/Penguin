@@ -1,0 +1,25 @@
+2024-06-07 — Refactored config/settings.py to load configuration from config.yaml if present, else from .env or environment variables.
+2024-06-07 — Added utils/error_handler.py for centralized error/info printing and refactored core/app_logic.py to use it.
+2024-06-07 — Added startup system stats embed to a beautified Logs channel under My PC category, with channel ID persistence and fallbacks in data/data_loader.py.
+2024-06-07 — Updated main.py to only clear the screen after successful requirements installation; errors now keep the output visible.
+2024-06-07 — Implemented cross-platform port listing service and Nextcord command to show running services and ports with link buttons under services/port_service.py and api/routes.py.
+2024-06-07 — Added PortService under services/port_service.py and a /ports slash command in api/routes.py that lists running services and ports with clickable embed links (not auto-opening).
+2024-06-07 — Updated port listing feature to use the machine's local IP address instead of localhost for service URLs in api/routes.py.
+2024-06-07 — Updated /ports command to send service/port details to the #ports channel in the mypc guild.
+2024-06-07 — On bot startup, I now send the ports/services info embed to the #ports channel in the mypc guild (core/app_logic.py, main.py).
+2024-06-07 — Fixed import and startup bugs for sending ports info to #ports channel in mypc guild on bot startup. Ensured modularity and PEP8 compliance.
+2024-06-07 — Added a module-level send_ports_info_to_channel function in core/app_logic.py for import compatibility with main.py.
+2024-06-07 — On startup, I now send a ports/services embed to a 'ports' channel under the 'my-pc' category, creating the channel if needed, using the same logic as the logs startup message (core/app_logic.py).
+2024-06-07 — Added config/service_filter.txt and logic to only send ports info for services listed in that file. If the file is empty, nothing is sent.
+2024-06-07 — Fixed bug: now only sends ports/services that match names in config/service_filter.txt (case-insensitive, ignores empty and comment lines).
+2024-06-07 — Added /purge slash command to purge all messages in the current channel (api/routes.py).
+2024-06-07 — Added admin/server checker using SERVER_ID and ADMIN_ID from config/settings.py, and applied it to all slash commands.
+2024-06-07 — Moved is_authorized check to utils/validators.py and updated api/routes.py to use it for cleaner code.
+2024-06-07 — Fixed config/settings.py to handle empty or invalid config.yaml gracefully, preventing AttributeError on startup.
+2024-06-07 — Registered all slash commands with test guild ID 1383698902942748762 for faster testing.
+2024-06-07 — Now print a warning in the terminal if SERVER_ID or ADMIN_ID is missing from both .env and config.yaml in config/settings.py.
+2024-06-07 — Added config checks for Discord token, admin ID, and server ID in main.py before starting the bot.
+2024-06-07 — Added DISCORD_WEBHOOK_CONSOLE config and now send all startup/config/requirement messages to the webhook if set.
+2024-06-07 — Introduced WebhookConsole in utils/webhook.py and replaced sys.stdout in main.py so all print output is also sent to DISCORD_WEBHOOK_CONSOLE if configured.
+2024-06-07 — Refactored webhook console to send messages asynchronously in the background and fixed double printing of startup banners.
+2024-06-07 — Fixed slash command registration by specifying guild_ids and ensuring setup functions are called in main.py for instant /command availability.

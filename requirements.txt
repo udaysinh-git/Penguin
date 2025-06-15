@@ -1,0 +1,8 @@
+nextcord
+rich
+pyyaml
+python-dotenv
+psutil
+setuptools
+pytest
+requests
